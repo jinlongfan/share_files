@@ -1,0 +1,28 @@
+case $# in
+	2) hostname=$1 nuid=$2 
+	;;
+	3) hostname=$2 nuid=$3 
+	;;
+	4) hostname=$3 nuid=$4 
+	;;
+	5) hostname=$4 nuid=$5 
+	;;	
+ 	*) echo wrong input 
+ 			exit -1 
+ 	;;
+esac
+
+port=-1
+ssl=0
+
+while getopts "p:s" opt;
+do
+	case $opt in 
+		p) port=$OPTARG 
+		;;
+		s) ssl=1
+		;;
+	esac		
+done
+
+python prj1.py $hostname $nuid $port $ssl
